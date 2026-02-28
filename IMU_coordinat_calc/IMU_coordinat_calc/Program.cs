@@ -10,7 +10,7 @@ namespace IMU_coordinat_calc
 
             double der2rad = Math.PI / 180;
 
-            #region P_SCS
+            #region P_SCS Read
             //IMU, Sensor Koordinat Sistemi (SCS) ‘nde başlangıçta aşağıdaki noktayı ölçmüştür.
             //P_SCS = [𝑋 𝑌 𝑍] = [1 2 3]
 
@@ -21,6 +21,7 @@ namespace IMU_coordinat_calc
             double[] P_SCS_Homojen = { X, Y, Z, 1 };
 
             #endregion
+
 
             #region SCS2PCS Dönüşüm Matrisi
 
@@ -123,7 +124,7 @@ namespace IMU_coordinat_calc
 
             Console.WriteLine();
 
-            #region H_Total Calc
+            #region H_Total Calculation
 
             //H_Total = = H_{SCS → WCS}
 
@@ -172,7 +173,5 @@ namespace IMU_coordinat_calc
             
             Console.Read();
         }
-                   
     }
-
 }

@@ -5,3 +5,10 @@ C:\Users\MONSTER\source\repos\IMU_coordinat_calc\IMU_coordinat_calc\obj\Debug\IM
 C:\Users\MONSTER\source\repos\IMU_coordinat_calc\IMU_coordinat_calc\obj\Debug\IMU_coordinat_calc.csproj.CoreCompileInputs.cache
 C:\Users\MONSTER\source\repos\IMU_coordinat_calc\IMU_coordinat_calc\obj\Debug\IMU_coordinat_calc.exe
 C:\Users\MONSTER\source\repos\IMU_coordinat_calc\IMU_coordinat_calc\obj\Debug\IMU_coordinat_calc.pdb
+C:\Users\MONSTER\Documents\GitHub\IMU_Koordinat_SW\IMU_coordinat_calc\IMU_coordinat_calc\bin\Debug\IMU_coordinat_calc.exe.config
+C:\Users\MONSTER\Documents\GitHub\IMU_Koordinat_SW\IMU_coordinat_calc\IMU_coordinat_calc\bin\Debug\IMU_coordinat_calc.exe
+C:\Users\MONSTER\Documents\GitHub\IMU_Koordinat_SW\IMU_coordinat_calc\IMU_coordinat_calc\bin\Debug\IMU_coordinat_calc.pdb
+C:\Users\MONSTER\Documents\GitHub\IMU_Koordinat_SW\IMU_coordinat_calc\IMU_coordinat_calc\obj\Debug\IMU_coordinat_calc.csproj.AssemblyReference.cache
+C:\Users\MONSTER\Documents\GitHub\IMU_Koordinat_SW\IMU_coordinat_calc\IMU_coordinat_calc\obj\Debug\IMU_coordinat_calc.csproj.CoreCompileInputs.cache
+C:\Users\MONSTER\Documents\GitHub\IMU_Koordinat_SW\IMU_coordinat_calc\IMU_coordinat_calc\obj\Debug\IMU_coordinat_calc.exe
+C:\Users\MONSTER\Documents\GitHub\IMU_Koordinat_SW\IMU_coordinat_calc\IMU_coordinat_calc\obj\Debug\IMU_coordinat_calc.pdb
