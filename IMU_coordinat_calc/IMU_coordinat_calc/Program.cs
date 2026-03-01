@@ -184,7 +184,7 @@ namespace IMU_coordinat_calc
 
             double detRotX = Rx_Theta[1, 1] * Rx_Theta[2, 2] - Rx_Theta[2, 1] * Rx_Theta[1, 2];
             Console.WriteLine("X ekseni etrafında dönüşüm matrisinin determinantı == 1  ???");
-            
+
             if (detRotX != 1)
             {
                 Console.WriteLine(" Hayır, determinantı = " + detRotX + ", X ekseni etrafında dönüşüm matrisinde hata olabilir !!!");
@@ -195,7 +195,7 @@ namespace IMU_coordinat_calc
 
             double detRotZ = Rz_Beta[0, 0] * Rz_Beta[1, 1] - Rz_Beta[1, 0] * Rz_Beta[0, 1];
             Console.WriteLine("Z ekseni etrafında dönüşüm matrisinin determinantı == 1  ???");
-            
+
             if (detRotZ != 1)
             {
                 Console.WriteLine(" Hayır, determinantı = " + detRotZ + ", Z ekseni etrafında dönüşüm matrisinde hata olabilir !!!");
@@ -250,6 +250,50 @@ namespace IMU_coordinat_calc
             {
                 Console.WriteLine("Z ekseni etrafında dönüşüm matrisinde hata olabilir !!!");
             }
+            #endregion
+
+            Console.WriteLine();
+
+            #region H_Total matrisinin sağlaması
+
+            // Determinant kontrol
+            // H_Total matrisinin determinantı
+
+            double detH_Total = H_Total[0, 0] * (H_Total[1, 1] * H_Total[2, 2] - H_Total[2, 1] * H_Total[1, 2])
+                + H_Total[0, 2] * (H_Total[1, 0] * H_Total[2, 1] - H_Total[1, 1] * H_Total[2, 0]) 
+                - H_Total[0, 1] * (H_Total[1, 0] * H_Total[2, 2] - H_Total[2, 0] * H_Total[1, 2]);
+            Console.WriteLine("H_Total matrisinin determinantı == 1  ???");
+
+            if (detH_Total != 1)
+            {
+                Console.WriteLine(" Hayır, determinantı = " + detH_Total + ", H_Total matrisinde  hata olabilir !!!");
+            }
+            else Console.WriteLine(" Evet, determinantı = " + detH_Total);
+
+            // H_TotalAndTransposeProduct = H_Total * H_TotalTranspose
+
+            double[,] H_TotalAndTransposeProduct = new double[3, 3];
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
+                    for (int k = 0; k < 3; k++)
+                    {
+                        H_TotalAndTransposeProduct[i, j] += H_Total[i, k] * H_Total[j, k];
+                    }
+            Console.WriteLine(" H_TotalAndTransposeProduct = H_Total * H_TotalTranspose == I  ???");
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    Console.Write("   " + H_TotalAndTransposeProduct[i, j] + "      ");
+                }
+                Console.WriteLine();
+            }
+            if ((H_TotalAndTransposeProduct[0, 0] != 1) || (H_TotalAndTransposeProduct[1, 1] != 1) || (H_TotalAndTransposeProduct[2, 2] != 1))
+            {
+                Console.WriteLine("H_Total matrisinde hata olabilir !!!");
+            }
+
             #endregion
 
             Console.Read();
