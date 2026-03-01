@@ -126,7 +126,7 @@ namespace IMU_coordinat_calc
 
             #region H_Total Calculation
 
-            //H_Total = = H_{SCS → WCS}
+            //H_Total = H_{SCS → WCS}
 
             double[,] H_Total = new double[4, 4];
             for (int i = 0; i < 4; i++)
@@ -170,7 +170,88 @@ namespace IMU_coordinat_calc
             Console.WriteLine();
 
             #endregion
+
+            Console.WriteLine();
+
+            #region Hesaplamaları Doğrulama
+
+            Console.WriteLine("Hesaplamaların sağlamasını görmek istiyorsanız herhangi bir tuşa basın");
+            Console.ReadKey();
+            Console.WriteLine();
+
+            // Determinant kontrol
+            // X ekseni etrafında dönüşüm matrisinin determinantı
+
+            double detRotX = Rx_Theta[1, 1] * Rx_Theta[2, 2] - Rx_Theta[2, 1] * Rx_Theta[1, 2];
+            Console.WriteLine("X ekseni etrafında dönüşüm matrisinin determinantı == 1  ???");
             
+            if (detRotX != 1)
+            {
+                Console.WriteLine(" Hayır, determinantı = " + detRotX + ", X ekseni etrafında dönüşüm matrisinde hata olabilir !!!");
+            }
+            else Console.WriteLine(" Evet, determinantı = " + detRotX);
+
+            // Z ekseni etrafında dönüşüm matrisinin determinantı
+
+            double detRotZ = Rz_Beta[0, 0] * Rz_Beta[1, 1] - Rz_Beta[1, 0] * Rz_Beta[0, 1];
+            Console.WriteLine("Z ekseni etrafında dönüşüm matrisinin determinantı == 1  ???");
+            
+            if (detRotZ != 1)
+            {
+                Console.WriteLine(" Hayır, determinantı = " + detRotZ + ", Z ekseni etrafında dönüşüm matrisinde hata olabilir !!!");
+            }
+            else Console.WriteLine(" Evet, determinantı = " + detRotZ);
+
+            // Rx_ThetaAndTransposeProduct = Rx_Theta * Rx_ThetaTranspose
+
+            double[,] Rx_ThetaAndTransposeProduct = new double[3, 3];
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
+                    for (int k = 0; k < 3; k++)
+                    {
+                        Rx_ThetaAndTransposeProduct[i, j] += Rx_Theta[i, k] * Rx_Theta[j, k];
+                    }
+            Console.WriteLine(" Rx_ThetaAndTransposeProduct = Rx_Theta * Rx_ThetaTranspose == I  ???");
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    Console.Write("   " + Rx_ThetaAndTransposeProduct[i, j] + "      ");
+                }
+                Console.WriteLine();
+            }
+            if ((Rx_ThetaAndTransposeProduct[0, 0] != 1) || (Rx_ThetaAndTransposeProduct[1, 1] != 1) || (Rx_ThetaAndTransposeProduct[2, 2] != 1))
+            {
+                Console.WriteLine("X ekseni etrafında dönüşüm matrisinde hata olabilir !!!");
+            }
+            Console.WriteLine();
+
+            // Rz_BetaAndTransposeProduct = Rz_Beta * Rz_BetaTranspose
+
+            double[,] Rz_BetaAndTransposeProduct = new double[3, 3];
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
+                    for (int k = 0; k < 3; k++)
+                    {
+                        Rz_BetaAndTransposeProduct[i, j] += Rz_Beta[i, k] * Rz_Beta[j, k];
+                    }
+            Console.WriteLine(" Rz_BetaAndTransposeProduct = Rz_Beta * Rz_BetaTranspose == I  ???");
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    Console.Write("   " + Rz_BetaAndTransposeProduct[i, j] + "      ");
+                }
+                Console.WriteLine();
+            }
+            if ((Rz_BetaAndTransposeProduct[0, 0] != 1) || (Rz_BetaAndTransposeProduct[1, 1] != 1) || (Rz_BetaAndTransposeProduct[2, 2] != 1))
+            {
+                Console.WriteLine("Z ekseni etrafında dönüşüm matrisinde hata olabilir !!!");
+            }
+            #endregion
+
             Console.Read();
         }
     }
